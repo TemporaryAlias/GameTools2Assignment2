@@ -6,9 +6,11 @@ public class PlayerStats : MonoBehaviour {
 
     [Header("Player Settings")]
 
-    public int maxHP;
-    public int maxCombo;
-    
+    [SerializeField] int maxHP;
+    [SerializeField] int maxCombo;
+
+    [SerializeField] float invulnTime;
+
     public bool invuln;
 
     int currentHP, currentCombo;
@@ -36,6 +38,8 @@ public class PlayerStats : MonoBehaviour {
         if (currentHP <= 0) {
             Die();
         }
+
+        StartCoroutine("InvulnTimer");
     }
 
     public void Heal(int healAmount) {
@@ -56,6 +60,16 @@ public class PlayerStats : MonoBehaviour {
 
     void Die() {
 
+    }
+
+    IEnumerator InvulnTimer() {
+        invuln = true;
+
+        yield return new WaitForSeconds(invulnTime);
+
+        if (LevelManager.instance.currentGameState != LevelManager.GameState.COMBO) {
+            invuln = false;
+        }
     }
 
 }

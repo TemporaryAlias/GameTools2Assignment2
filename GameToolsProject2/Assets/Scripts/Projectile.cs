@@ -8,23 +8,18 @@ public class Projectile : MonoBehaviour {
 
     public int damage;
 
-    public float speed, lifetimeInSeconds;
+    public float speed;
 
     public bool deflected;
 
 	void Start () {
-        StartCoroutine("DestroyTimer");
 	}
 	
 	void Update () {
-        transform.Translate(transform.forward * speed);
+        if (LevelManager.instance.currentGameState != LevelManager.GameState.COMBO) {
+            transform.Translate(transform.forward * speed, Space.Self);
+        }
 	}
-
-    IEnumerator DestroyTimer() {
-        yield return new WaitForSeconds(lifetimeInSeconds);
-
-        Destroy(gameObject);
-    }
 
     void OnTriggerEnter(Collider other) {
         if (!deflected && other.gameObject.CompareTag("Player")) {
@@ -38,6 +33,18 @@ public class Projectile : MonoBehaviour {
             enemy.TakeDamage(damage);
             Destroy(gameObject);
         }
+        
+        if (other.gameObject.CompareTag("ProjectileBoundary")) {
+            Destroy(gameObject);
+        }
+    }
+
+    public void Deflect(Transform deflector) {
+        deflected = true;
+
+        float rotation = Vector3.SignedAngle(transform.up, deflector.right, Vector3.up);
+
+        transform.Rotate(transform.forward, -rotation * 2, Space.World);
     }
 
 }

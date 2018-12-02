@@ -9,7 +9,7 @@ public class NearMissBehaviour : MonoBehaviour {
     public int nearMissCombo;
 
     void OnTriggerExit(Collider other) {
-        if (other.gameObject.CompareTag("Player")) {
+        if (other.gameObject.CompareTag("Player") && LevelManager.instance.currentGameState != LevelManager.GameState.COMBO) {
             PlayerStats player = other.GetComponent<PlayerStats>();
 
             player.AddCombo(nearMissCombo);

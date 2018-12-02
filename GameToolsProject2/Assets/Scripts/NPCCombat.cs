@@ -9,7 +9,7 @@ public class NPCCombat : MonoBehaviour {
     [SerializeField] Transform projectileFirePoint;
     [SerializeField] GameObject projectilePrefab;
     [SerializeField] int projectileDamage, projectileNearMissCombo;
-    [SerializeField] float projectileSpeed, projectileLifetimeInSeconds;
+    [SerializeField] float projectileSpeed;
     [SerializeField] float attackCooldown;
 
     NPCMovement movement;
@@ -37,7 +37,6 @@ public class NPCCombat : MonoBehaviour {
 
             projectile.damage = projectileDamage;
             projectile.speed = projectileSpeed;
-            projectile.lifetimeInSeconds = projectileLifetimeInSeconds;
 
             nearMiss.nearMissCombo = projectileNearMissCombo;
 
