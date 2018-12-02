@@ -25,4 +25,21 @@ public class CameraPositioner : MonoBehaviour {
         playerCamera.transform.rotation = Quaternion.Lerp(playerCamera.transform.rotation, currentCameraPoint.rotation, cameraLerp);
     }
 
+    public void UpdateCameraMode() {
+        switch (LevelManager.instance.currentGameState) {
+
+            case LevelManager.GameState.MENU:
+                return;
+
+            case LevelManager.GameState.DEFLECT:
+                currentCameraPoint = cameraPointRegular;
+                return;
+
+            case LevelManager.GameState.COMBO:
+                currentCameraPoint = cameraPointCombo;
+                return;
+
+        }
+    }
+
 }

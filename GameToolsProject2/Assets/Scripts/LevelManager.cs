@@ -19,14 +19,40 @@ public class LevelManager : MonoBehaviour {
         DontDestroyOnLoad(gameObject);
     }
 
+    //Enum to handle current state of the game
+    public enum GameState {MENU, COMBO, DEFLECT};
+    
     public PlayerMovement player;
 
+    public CameraPositioner playerCamera;
+
+    public GameState currentGameState;
+
 	void Start () {
-        player = FindObjectOfType<PlayerMovement>();
+
 	}
 	
 	void Update () {
-		
-	}
+
+    }
+
+    public void ChangeGameState(GameState newState) {
+        currentGameState = newState;
+
+        switch (currentGameState) {
+
+            case GameState.MENU:
+                return;
+
+            case GameState.DEFLECT:
+                return;
+
+            case GameState.COMBO:
+                return;
+            
+        }
+
+        playerCamera.UpdateCameraMode();
+    }
 
 }

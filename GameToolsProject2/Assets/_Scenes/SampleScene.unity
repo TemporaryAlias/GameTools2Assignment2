@@ -547,6 +547,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 141077492}
+  playerCamera: {fileID: 534669906}
+  currentGameState: 2
 --- !u!4 &787053520
 Transform:
   m_ObjectHideFlags: 0
