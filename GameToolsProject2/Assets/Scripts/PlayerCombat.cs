@@ -22,6 +22,10 @@ public class PlayerCombat : MonoBehaviour {
 	
 	void Update () {
         if (LevelManager.instance.currentGameState == LevelManager.GameState.DEFLECT) {
+            if (currentTarget != null) {
+                currentTarget = null;
+            }
+
             if (Input.GetMouseButtonDown(0) && !cooldown) {
                 StartCoroutine("Deflect");
             }
@@ -40,6 +44,8 @@ public class PlayerCombat : MonoBehaviour {
                     if (Input.GetMouseButtonDown(0)) {
                         AttackTarget();
                     }
+                } else {
+                    navAgent.SetDestination(currentTarget.position);
                 }
             }
         }

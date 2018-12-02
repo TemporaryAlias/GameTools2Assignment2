@@ -14,9 +14,12 @@ public class PlayerMovement : MonoBehaviour {
     
     [SerializeField] LayerMask groundMask;
 
+    public PlayerStats stats;
+
     Camera playerCamera;
 
 	void Start () {
+        stats = GetComponent<PlayerStats>();
 	}
 	
 	void Update () {

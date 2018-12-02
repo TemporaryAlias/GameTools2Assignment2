@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class NPCStats : MonoBehaviour {
 
     [Header("Enemy Settings")]
 
     public int maxHP;
+    [SerializeField] int hitComboPoints, killComboPoints;
 
     public bool invuln;
 
@@ -15,15 +17,20 @@ public class NPCStats : MonoBehaviour {
 
     public int currentHP;
 
+    NavMeshAgent navAgent;
+
     void Start() {
         combat = GetComponent<NPCCombat>();
         movement = GetComponent<NPCMovement>();
 
         currentHP = maxHP;
+
+        navAgent = GetComponent<NavMeshAgent>();
     }
 
     void Update() {
         if (LevelManager.instance.currentGameState == LevelManager.GameState.COMBO) {
+            navAgent.ResetPath();
             movement.enabled = false;
         } else {
             movement.enabled = true;
@@ -42,8 +49,12 @@ public class NPCStats : MonoBehaviour {
         }
 
         if (currentHP <= 0) {
+            LevelManager.instance.player.stats.AddCombo(killComboPoints);
             Die();
+            return;
         }
+
+        LevelManager.instance.player.stats.AddCombo(hitComboPoints);
     }
 
     public void Heal(int healAmount) {

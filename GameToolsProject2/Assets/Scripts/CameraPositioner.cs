@@ -13,6 +13,8 @@ public class CameraPositioner : MonoBehaviour {
 
     Quaternion regularRotation, comboRotation, currentRotation;
 
+    Vector3 posDifference;
+
     Camera playerCamera;
 
     void Start() {
@@ -39,11 +41,13 @@ public class CameraPositioner : MonoBehaviour {
                 break;
 
             case LevelManager.GameState.DEFLECT:
+                transform.position = LevelManager.instance.player.transform.position + posDifference;
                 currentCameraPoint = cameraPointRegular;
                 currentRotation = regularRotation;
                 break;
 
             case LevelManager.GameState.COMBO:
+                posDifference = LevelManager.instance.player.transform.position - transform.position;
                 currentCameraPoint = cameraPointCombo;
                 currentRotation = comboRotation;
                 break;

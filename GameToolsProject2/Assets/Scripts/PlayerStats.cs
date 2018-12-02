@@ -18,7 +18,7 @@ public class PlayerStats : MonoBehaviour {
 
     Quaternion savedRotation;
 
-    int currentHP, currentCombo;
+    public int currentHP, currentCombo;
 
     void Start () {
         combat = GetComponent<PlayerCombat>();
