@@ -9,19 +9,33 @@ public class PlayerStats : MonoBehaviour {
     [SerializeField] int maxHP;
     [SerializeField] int maxCombo;
 
-    [SerializeField] float invulnTime;
+    [SerializeField] float invulnTime, comboTime;
+
+    PlayerCombat combat;
+    PlayerMovement movement;
 
     public bool invuln;
+
+    Quaternion savedRotation;
 
     int currentHP, currentCombo;
 
     void Start () {
+        combat = GetComponent<PlayerCombat>();
+        movement = GetComponent<PlayerMovement>();
+
         currentHP = maxHP;
         currentCombo = 0;
 	}
 	
 	void Update () {
-		
+		if (currentCombo >= maxCombo) {
+            if (Input.GetMouseButtonDown(1)) {
+                LevelManager.instance.ChangeGameState(LevelManager.GameState.COMBO);
+                StartCoroutine("ComboTimer");
+                currentCombo = 0;
+            }
+        }
 	}
 
     public void TakeDamage(int damageDone) {
@@ -70,6 +84,19 @@ public class PlayerStats : MonoBehaviour {
         if (LevelManager.instance.currentGameState != LevelManager.GameState.COMBO) {
             invuln = false;
         }
+    }
+
+    IEnumerator ComboTimer() {
+        movement.enabled = false;
+        invuln = true;
+        savedRotation = transform.rotation;
+
+        yield return new WaitForSeconds(comboTime);
+
+        transform.rotation = savedRotation;
+        LevelManager.instance.ChangeGameState(LevelManager.GameState.DEFLECT);
+        movement.enabled = true;
+        invuln = false;
     }
 
 }

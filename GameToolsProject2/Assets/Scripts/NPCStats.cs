@@ -13,7 +13,7 @@ public class NPCStats : MonoBehaviour {
     NPCCombat combat;
     NPCMovement movement;
 
-    int currentHP;
+    public int currentHP;
 
     void Start() {
         combat = GetComponent<NPCCombat>();
@@ -23,7 +23,11 @@ public class NPCStats : MonoBehaviour {
     }
 
     void Update() {
-
+        if (LevelManager.instance.currentGameState == LevelManager.GameState.COMBO) {
+            movement.enabled = false;
+        } else {
+            movement.enabled = true;
+        }
     }
 
     public void TakeDamage(int damageDone) {
@@ -51,7 +55,7 @@ public class NPCStats : MonoBehaviour {
     }
 
     void Die() {
-
+        Destroy(gameObject);
     }
 
 }

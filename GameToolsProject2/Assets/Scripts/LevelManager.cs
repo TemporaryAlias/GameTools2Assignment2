@@ -42,16 +42,16 @@ public class LevelManager : MonoBehaviour {
         switch (currentGameState) {
 
             case GameState.MENU:
-                return;
+                break;
 
             case GameState.DEFLECT:
-                return;
+                break;
 
             case GameState.COMBO:
-                return;
+                break;
             
         }
-
+        
         playerCamera.UpdateCameraMode();
     }
 

@@ -11,33 +11,42 @@ public class CameraPositioner : MonoBehaviour {
 
     Transform currentCameraPoint;
 
+    Quaternion regularRotation, comboRotation, currentRotation;
+
     Camera playerCamera;
 
     void Start() {
         playerCamera = GetComponent<Camera>();
 
         currentCameraPoint = cameraPointRegular;
+
+        regularRotation = cameraPointRegular.rotation;
+        comboRotation = cameraPointCombo.rotation;
+
+        currentRotation = regularRotation;
     }
 
     void Update() {
         playerCamera.transform.position = Vector3.Lerp(playerCamera.transform.position, currentCameraPoint.position, cameraLerp);
 
-        playerCamera.transform.rotation = Quaternion.Lerp(playerCamera.transform.rotation, currentCameraPoint.rotation, cameraLerp);
+        playerCamera.transform.rotation = Quaternion.Lerp(playerCamera.transform.rotation, currentRotation, cameraLerp);
     }
 
     public void UpdateCameraMode() {
         switch (LevelManager.instance.currentGameState) {
 
             case LevelManager.GameState.MENU:
-                return;
+                break;
 
             case LevelManager.GameState.DEFLECT:
                 currentCameraPoint = cameraPointRegular;
-                return;
+                currentRotation = regularRotation;
+                break;
 
             case LevelManager.GameState.COMBO:
                 currentCameraPoint = cameraPointCombo;
-                return;
+                currentRotation = comboRotation;
+                break;
 
         }
     }

@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33888695851174940}
   - component: {fileID: 23728957561829388}
   - component: {fileID: 135070122853698978}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 4520665592448118}
   - component: {fileID: 33860349438518462}
   - component: {fileID: 23400048891980334}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: EnemyModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -60,7 +60,7 @@ GameObject:
   - component: {fileID: 114659100192870086}
   - component: {fileID: 195533906474571914}
   - component: {fileID: 54889834851018150}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -75,7 +75,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4078572080783544}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ProjectileFirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -247,8 +247,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c02e1adf315ce94794b8b85e6cb9afc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 0
+  maxHP: 10
   invuln: 0
+  currentHP: 0
 --- !u!114 &114659100192870086
 MonoBehaviour:
   m_ObjectHideFlags: 1
