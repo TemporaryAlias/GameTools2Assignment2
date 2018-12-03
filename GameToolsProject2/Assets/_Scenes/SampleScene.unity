@@ -302,7 +302,7 @@ MonoBehaviour:
   maxHP: 10
   maxCombo: 50
   invulnTime: 1
-  comboTime: 10
+  comboTime: 5
   invuln: 0
   currentHP: 0
   currentCombo: 0
@@ -333,8 +333,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   deflectCollider: {fileID: 552855302}
-  deflectTime: 0.5
-  deflectCooldown: 2
+  deflectTime: 0.1
+  deflectCooldown: 0.2
   targetableMask:
     serializedVersion: 2
     m_Bits: 1024
@@ -695,13 +695,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 534669902}
-  m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 23, z: 0}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 21, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!114 &534669906
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1666,10 +1666,10 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1923524641}
-  m_LocalRotation: {x: 0.32343015, y: -0, z: -0, w: 0.9462521}
-  m_LocalPosition: {x: 0, y: 7.9999995, z: -10}
+  m_LocalRotation: {x: 0.29210347, y: -0, z: -0, w: 0.95638674}
+  m_LocalPosition: {x: 0, y: 8.5, z: -9.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 141077494}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 37.741, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 33.968002, y: 0, z: 0}
