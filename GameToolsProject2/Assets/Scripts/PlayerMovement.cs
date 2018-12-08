@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour {
     [Header("Player Settings")]
 
     [SerializeField] float moveSpeed;
-    [SerializeField] GameObject playerModel;
+    public GameObject playerModel;
 
     [Space(5)]
     [Header("Raycast Settings")]

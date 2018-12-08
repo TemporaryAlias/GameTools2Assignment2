@@ -11,8 +11,8 @@ public class PlayerStats : MonoBehaviour {
 
     [SerializeField] float invulnTime, comboTime;
 
-    PlayerCombat combat;
-    PlayerMovement movement;
+    public PlayerCombat combat;
+    public PlayerMovement movement;
 
     public bool invuln;
 
@@ -26,7 +26,9 @@ public class PlayerStats : MonoBehaviour {
 
         currentHP = maxHP;
         currentCombo = 0;
-	}
+
+        UpdateUI();
+    }
 	
 	void Update () {
 		if (currentCombo >= maxCombo) {
@@ -36,6 +38,8 @@ public class PlayerStats : MonoBehaviour {
                 currentCombo = 0;
             }
         }
+
+        UpdateUI();
 	}
 
     public void TakeDamage(int damageDone) {
@@ -73,7 +77,15 @@ public class PlayerStats : MonoBehaviour {
     }
 
     void Die() {
+        LevelManager.instance.RestartScene();
+    }
 
+    void UpdateUI() {
+        LevelManager.instance.uiHandler.maxCombo = maxCombo;
+        LevelManager.instance.uiHandler.playerMaxHP = maxHP;
+
+        LevelManager.instance.uiHandler.currentCombo = currentCombo;
+        LevelManager.instance.uiHandler.playerCurrentHp = currentHP;
     }
 
     IEnumerator InvulnTimer() {

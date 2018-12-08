@@ -14,10 +14,13 @@ public class PlayerCombat : MonoBehaviour {
 
     bool cooldown;
 
+    PlayerStats stats;
+
     NavMeshAgent navAgent;
 
 	void Start () {
         navAgent = GetComponent<NavMeshAgent>();
+        stats = GetComponent<PlayerStats>();
 	}
 	
 	void Update () {
@@ -35,8 +38,8 @@ public class PlayerCombat : MonoBehaviour {
             } else {
                 float dist = Vector3.Distance(transform.position, currentTarget.position);
 
-                Vector3 look = new Vector3(currentTarget.position.x, transform.position.y, currentTarget.position.z);
-                transform.LookAt(look);
+                Vector3 look = new Vector3(currentTarget.position.x, stats.movement.playerModel.transform.position.y, currentTarget.position.z);
+                stats.movement.playerModel.transform.LookAt(look);
 
                 if (dist <= navAgent.stoppingDistance) {
                     navAgent.ResetPath();

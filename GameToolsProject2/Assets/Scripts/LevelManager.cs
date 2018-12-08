@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour {
 
@@ -24,12 +25,17 @@ public class LevelManager : MonoBehaviour {
     
     public PlayerMovement player;
 
+    public UIHandler uiHandler;
+
     public CameraPositioner playerCamera;
 
     public GameState currentGameState;
 
-	void Start () {
+	void Start ()  {
+        SceneManager.sceneLoaded += OnSceneLoad;
 
+        player = FindObjectOfType<PlayerMovement>();
+        playerCamera = FindObjectOfType<CameraPositioner>();
 	}
 	
 	void Update () {
@@ -51,8 +57,17 @@ public class LevelManager : MonoBehaviour {
                 break;
             
         }
-        
+
+        uiHandler.UIMode(currentGameState);
         playerCamera.UpdateCameraMode();
     }
 
+    public void RestartScene() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+
+    void OnSceneLoad(Scene scene, LoadSceneMode mode) {
+        player = FindObjectOfType<PlayerMovement>();
+        playerCamera = FindObjectOfType<CameraPositioner>();
+    }
 }
