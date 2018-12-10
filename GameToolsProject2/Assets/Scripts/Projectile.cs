@@ -12,6 +12,8 @@ public class Projectile : MonoBehaviour {
 
     public bool deflected;
 
+    [SerializeField] int enemyHitCombo, deflectCombo;
+
 	void Start () {
 	}
 	
@@ -31,6 +33,9 @@ public class Projectile : MonoBehaviour {
             NPCStats enemy = other.GetComponent<NPCStats>();
 
             enemy.TakeDamage(damage);
+            
+            LevelManager.instance.player.stats.AddCombo(enemyHitCombo);
+
             Destroy(gameObject);
         }
         
@@ -41,6 +46,7 @@ public class Projectile : MonoBehaviour {
 
     public void Deflect(Transform deflector) {
         deflected = true;
+        LevelManager.instance.player.stats.AddCombo(deflectCombo);
 
         float rotation = Vector3.SignedAngle(transform.up, deflector.right, Vector3.up);
 

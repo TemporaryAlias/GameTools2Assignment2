@@ -29,6 +29,9 @@ public class PlayerCombat : MonoBehaviour {
                 currentTarget = null;
             }
 
+            transform.rotation = Quaternion.identity;
+            navAgent.ResetPath();
+
             if (Input.GetMouseButtonDown(0) && !cooldown) {
                 StartCoroutine("Deflect");
             }

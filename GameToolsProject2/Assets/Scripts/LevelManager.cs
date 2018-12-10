@@ -44,6 +44,8 @@ public class LevelManager : MonoBehaviour {
 
     public void ChangeGameState(GameState newState) {
         currentGameState = newState;
+        uiHandler.UIMode(newState);
+        playerCamera.UpdateCameraMode();
 
         switch (currentGameState) {
 
@@ -57,9 +59,6 @@ public class LevelManager : MonoBehaviour {
                 break;
             
         }
-
-        uiHandler.UIMode(currentGameState);
-        playerCamera.UpdateCameraMode();
     }
 
     public void RestartScene() {

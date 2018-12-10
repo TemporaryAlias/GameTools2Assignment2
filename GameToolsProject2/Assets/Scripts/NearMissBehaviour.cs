@@ -8,8 +8,14 @@ public class NearMissBehaviour : MonoBehaviour {
 
     public int nearMissCombo;
 
+    Projectile proj;
+
+    void Start() {
+        proj = GetComponentInParent<Projectile>(); 
+    }
+
     void OnTriggerExit(Collider other) {
-        if (other.gameObject.CompareTag("Player") && LevelManager.instance.currentGameState != LevelManager.GameState.COMBO) {
+        if (other.gameObject.CompareTag("Player") && LevelManager.instance.currentGameState != LevelManager.GameState.COMBO && !proj.deflected) {
             PlayerStats player = other.GetComponent<PlayerStats>();
 
             player.AddCombo(nearMissCombo);

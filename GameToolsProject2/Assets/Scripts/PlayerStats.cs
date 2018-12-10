@@ -9,7 +9,7 @@ public class PlayerStats : MonoBehaviour {
     [SerializeField] int maxHP;
     [SerializeField] int maxCombo;
 
-    [SerializeField] float invulnTime, comboTime;
+    public float invulnTime, comboTime;
 
     public PlayerCombat combat;
     public PlayerMovement movement;
@@ -26,8 +26,6 @@ public class PlayerStats : MonoBehaviour {
 
         currentHP = maxHP;
         currentCombo = 0;
-
-        UpdateUI();
     }
 	
 	void Update () {
