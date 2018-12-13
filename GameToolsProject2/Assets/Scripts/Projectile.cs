@@ -32,9 +32,11 @@ public class Projectile : MonoBehaviour {
         } else if (deflected && other.gameObject.CompareTag("Enemy")) {
             NPCStats enemy = other.GetComponent<NPCStats>();
 
-            enemy.TakeDamage(damage);
-            
-            LevelManager.instance.player.stats.AddCombo(enemyHitCombo);
+            if (!enemy.invuln) {
+                enemy.TakeDamage(damage);
+
+                LevelManager.instance.player.stats.AddCombo(enemyHitCombo);
+            }
 
             Destroy(gameObject);
         }
