@@ -39,6 +39,11 @@ public class Projectile : MonoBehaviour {
             }
 
             Destroy(gameObject);
+        } else if (other.gameObject.CompareTag("Battery")) {
+            HoloWall battery = other.GetComponentInParent<HoloWall>();
+
+            battery.TakeDamage(damage);
+            Destroy(gameObject);
         }
         
         if (other.gameObject.CompareTag("ProjectileBoundary")) {
