@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4548989788636484}
   - component: {fileID: 33245151999155046}
   - component: {fileID: 23807264057497074}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: EnemyModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4983302901727166}
   - component: {fileID: 33263893066811396}
   - component: {fileID: 23165009733366618}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -59,7 +59,7 @@ GameObject:
   - component: {fileID: 114873251984591382}
   - component: {fileID: 195020880575171422}
   - component: {fileID: 54641407805237524}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: Turret
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -74,7 +74,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4660884732864756}
-  m_Layer: 10
+  m_Layer: 0
   m_Name: ProjectileFirePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -186,7 +186,7 @@ MeshRenderer:
   m_ReflectionProbeUsage: 1
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 1c216ea06909f7443b17f10b72821766, type: 2}
+  - {fileID: 2100000, guid: 3c1bb693d1f9b9e48ae861a35906d5d0, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -267,7 +267,7 @@ MonoBehaviour:
   maxHP: 10
   hitComboPoints: 0
   killComboPoints: 0
-  invuln: 0
+  invuln: 1
   currentHP: 0
 --- !u!114 &114873251984591382
 MonoBehaviour:

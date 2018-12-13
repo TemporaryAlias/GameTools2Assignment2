@@ -23,8 +23,9 @@ public class PlayerMovement : MonoBehaviour {
 	}
 	
 	void Update () {
-        transform.Translate(playerModel.transform.right * Input.GetAxis("Horizontal") * moveSpeed);
-        transform.Translate(playerModel.transform.forward * Input.GetAxis("Vertical") * moveSpeed);
+        //playerModel. removed for testing
+        transform.Translate(transform.right * Input.GetAxis("Horizontal") * moveSpeed);
+        transform.Translate(transform.forward * Input.GetAxis("Vertical") * moveSpeed);
 
         UpdateRotation();
     }
