@@ -30,12 +30,17 @@ public class NPCMovement : MonoBehaviour {
 
     void RangeScan() {
         float dist = Vector3.Distance(transform.position, LevelManager.instance.player.transform.position);
-        
-        if (dist <= agroRange && dist > attackRange) {
-            navAgent.SetDestination(LevelManager.instance.player.transform.position);
-        } else if (dist <= attackRange) {
-            transform.LookAt(new Vector3(LevelManager.instance.player.transform.position.x, transform.position.y, LevelManager.instance.player.transform.position.z));
-            combat.Attack();
+        RaycastHit hit;
+
+        Physics.Raycast(transform.position, LevelManager.instance.player.transform.position - transform.position, out hit, attackRange);
+
+        if (hit.transform != null && hit.transform.gameObject.CompareTag("Player")) {
+            if (dist <= attackRange) {
+                transform.LookAt(new Vector3(LevelManager.instance.player.transform.position.x, transform.position.y, LevelManager.instance.player.transform.position.z));
+                combat.Attack();
+            } else if (dist <= agroRange && dist > attackRange) {
+                navAgent.SetDestination(LevelManager.instance.player.transform.position);
+            }
         }
     }
 
