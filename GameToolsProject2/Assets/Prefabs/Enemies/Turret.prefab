@@ -251,7 +251,7 @@ MonoBehaviour:
     type: 2}
   projectileDamage: 1
   projectileNearMissCombo: 5
-  projectileSpeed: 0.3
+  projectileSpeed: 0.2
   attackCooldown: 0.5
 --- !u!114 &114736017089719686
 MonoBehaviour:
@@ -267,6 +267,7 @@ MonoBehaviour:
   maxHP: 10
   hitComboPoints: 0
   killComboPoints: 0
+  targetSprite: {fileID: 0}
   invuln: 1
   currentHP: 0
 --- !u!114 &114873251984591382

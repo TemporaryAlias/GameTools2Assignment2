@@ -10,6 +10,9 @@ public class NPCStats : MonoBehaviour {
     public int maxHP;
     [SerializeField] int hitComboPoints, killComboPoints;
 
+    //DEBUG
+    [SerializeField] GameObject targetSprite;
+
     public bool invuln;
 
     NPCCombat combat;
@@ -26,14 +29,23 @@ public class NPCStats : MonoBehaviour {
         currentHP = maxHP;
 
         navAgent = GetComponent<NavMeshAgent>();
+
+        //DEBUG
+        targetSprite.SetActive(false);
     }
 
     void Update() {
         if (LevelManager.instance.currentGameState == LevelManager.GameState.COMBO) {
             navAgent.ResetPath();
             movement.enabled = false;
+
+            //DEBUG
+            targetSprite.SetActive(true);
         } else {
             movement.enabled = true;
+
+            //DEBUG
+            targetSprite.SetActive(false);
         }
     }
 
