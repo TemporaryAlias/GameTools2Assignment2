@@ -14,6 +14,8 @@ public class PlayerStats : MonoBehaviour {
     public PlayerCombat combat;
     public PlayerMovement movement;
 
+    public Animator anim;
+
     public bool invuln;
 
     Quaternion savedRotation;

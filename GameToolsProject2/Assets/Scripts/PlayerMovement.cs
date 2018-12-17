@@ -30,6 +30,10 @@ public class PlayerMovement : MonoBehaviour {
         UpdateRotation();
     }
 
+    void Update() {
+        stats.anim.SetFloat("Forward", Input.GetAxis("Vertical"));
+    }
+
     void UpdateRotation() {
         Ray cameraRay = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
