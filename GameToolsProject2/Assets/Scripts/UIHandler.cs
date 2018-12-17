@@ -24,24 +24,39 @@ public class UIHandler : MonoBehaviour {
 
     [SerializeField] GameObject comboUI, deflectUI;
 
+    [Space(5)]
+    [Header("Fade Settings")]
+    
+    [SerializeField] Image fadeImage;
+
+    [SerializeField] float fadeTime;
+
+    Color fadeColour;
+
+
     float comboCountdown;
 
     void Start() {
         LevelManager.instance.uiHandler = this;
+
+        fadeColour = new Color(0, 0, 0, 1);
+        StartCoroutine("FadeIn");
     }
 
     void Update ()  {
-        hpSlider.maxValue = playerMaxHP;
-        comboSlider.maxValue = maxCombo;
-        countdownSlider.maxValue = LevelManager.instance.player.stats.comboTime;
+        if (LevelManager.instance.currentGameState != LevelManager.GameState.MENU) {
+            hpSlider.maxValue = playerMaxHP;
+            comboSlider.maxValue = maxCombo;
+            countdownSlider.maxValue = LevelManager.instance.player.stats.comboTime;
 
-        hpSlider.value = playerCurrentHp;
-        comboSlider.value = currentCombo;
-        countdownSlider.value = comboCountdown;
+            hpSlider.value = playerCurrentHp;
+            comboSlider.value = currentCombo;
+            countdownSlider.value = comboCountdown;
 
-        hpText.text = playerCurrentHp + "/" + playerMaxHP;
-        comboText.text = currentCombo + "/" + maxCombo;
-        countdownText.text = comboCountdown.ToString();
+            hpText.text = playerCurrentHp + "/" + playerMaxHP;
+            comboText.text = currentCombo + "/" + maxCombo;
+            countdownText.text = comboCountdown.ToString();
+        }
     }
 
     void FixedUpdate() {
@@ -69,6 +84,116 @@ public class UIHandler : MonoBehaviour {
                 break;
 
         }
+    }
+
+    public void StartFadeOut(int newSceneIndex) {
+        StartCoroutine("FadeOut", newSceneIndex);
+    }
+
+    public void StartImageFade(Image image) {
+        StartCoroutine("ImageFade", image);
+    }
+
+    public void StartTextFade(Text text) {
+        StartCoroutine("TextFade", text);
+    }
+
+    public void StartImageFadeIn(Image image) {
+        StartCoroutine("ImageFadeIn", image);
+    }
+
+    public void StarTextFadeIn(Text text) {
+        StartCoroutine("TextFadeIn", text);
+    }
+
+    IEnumerator ImageFade(Image imageToFade) {
+        imageToFade.gameObject.SetActive(true);
+
+        Color imageColour = imageToFade.color;
+        imageColour.a = 1;
+
+        while (imageColour.a >= 0) {
+            imageColour.a -= 0.025f;
+            imageToFade.color = imageColour;
+
+            yield return new WaitForSeconds(fadeTime);
+        }
+
+        imageToFade.gameObject.SetActive(false);
+    }
+
+    IEnumerator TextFade(Text textToFade) {
+        textToFade.gameObject.SetActive(true);
+
+        Color textColour = textToFade.color;
+        textColour.a = 1;
+
+        while (textColour.a >= 0) {
+            textColour.a -= 0.025f;
+            textToFade.color = textColour;
+
+            yield return new WaitForSeconds(fadeTime);
+        }
+
+        textToFade.gameObject.SetActive(false);
+    }
+
+    IEnumerator ImageFadeIn(Image imageToFade) {
+        imageToFade.gameObject.SetActive(true);
+
+        Color imageColour = imageToFade.color;
+        imageColour.a = 0;
+
+        while (imageColour.a <= 1) {
+            imageColour.a += 0.025f;
+            imageToFade.color = imageColour;
+
+            yield return new WaitForSeconds(fadeTime);
+        }
+    }
+
+    IEnumerator TextFadeIn(Text textToFade) {
+        textToFade.gameObject.SetActive(true);
+
+        Color textColour = textToFade.color;
+        textColour.a = 0;
+
+        while (textColour.a <= 1) {
+            textColour.a += 0.025f;
+            textToFade.color = textColour;
+
+            yield return new WaitForSeconds(fadeTime);
+        }
+    }
+
+    IEnumerator FadeIn() {
+        fadeImage.gameObject.SetActive(true);
+
+        while (fadeColour.a >= 0) {
+            fadeColour.a -= 0.025f;
+            fadeImage.color = fadeColour;
+
+            yield return new WaitForSeconds(fadeTime);
+        }
+
+        fadeImage.gameObject.SetActive(false);
+    }
+
+    IEnumerator FadeOut(int newSceneIndex) {
+        fadeImage.gameObject.SetActive(true);
+
+        fadeColour.a = 0;
+
+        fadeImage.color = fadeColour;
+
+        while (fadeColour.a <= 1) {
+            fadeColour.a += 0.025f;
+            fadeImage.color = fadeColour;
+
+            yield return new WaitForSeconds(fadeTime);
+        }
+
+        LevelManager.instance.ChangeScene(newSceneIndex);
     }
 
 }
