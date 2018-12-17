@@ -9,7 +9,9 @@ public class NPCMovement : MonoBehaviour {
 
     [SerializeField] float agroRange;
     [SerializeField] float attackRange;
-    
+
+    [SerializeField] LayerMask ignoreMask;
+
     NPCCombat combat;
     NPCStats stats;
 
@@ -32,7 +34,7 @@ public class NPCMovement : MonoBehaviour {
         float dist = Vector3.Distance(transform.position, LevelManager.instance.player.transform.position);
         RaycastHit hit;
 
-        Physics.Raycast(transform.position, LevelManager.instance.player.transform.position - transform.position, out hit, attackRange);
+        Physics.Raycast(transform.position, LevelManager.instance.player.transform.position - transform.position, out hit, attackRange, ignoreMask);
 
         if (hit.transform != null && hit.transform.gameObject.CompareTag("Player")) {
             if (dist <= attackRange) {

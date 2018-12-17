@@ -34,8 +34,8 @@ public class LevelManager : MonoBehaviour {
 	void Start ()  {
         SceneManager.sceneLoaded += OnSceneLoad;
 
-        player = FindObjectOfType<PlayerMovement>();
-        playerCamera = FindObjectOfType<CameraPositioner>();
+        //player = FindObjectOfType<PlayerMovement>();
+        //playerCamera = FindObjectOfType<CameraPositioner>();
 	}
 	
 	void Update () {
@@ -45,7 +45,6 @@ public class LevelManager : MonoBehaviour {
     public void ChangeGameState(GameState newState) {
         currentGameState = newState;
         uiHandler.UIMode(newState);
-        playerCamera.UpdateCameraMode();
 
         switch (currentGameState) {
 
@@ -53,9 +52,11 @@ public class LevelManager : MonoBehaviour {
                 break;
 
             case GameState.DEFLECT:
+                playerCamera.UpdateCameraMode();
                 break;
 
             case GameState.COMBO:
+                playerCamera.UpdateCameraMode();
                 break;
             
         }
@@ -65,8 +66,19 @@ public class LevelManager : MonoBehaviour {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
+    public void ChangeScene(int newSceneIndex) {
+        SceneManager.LoadScene(newSceneIndex);
+    }
+
     void OnSceneLoad(Scene scene, LoadSceneMode mode) {
         player = FindObjectOfType<PlayerMovement>();
         playerCamera = FindObjectOfType<CameraPositioner>();
+        uiHandler = FindObjectOfType<UIHandler>();
+
+        if (player == null || playerCamera == null) {
+            currentGameState = GameState.MENU;
+        } else {
+            ChangeGameState(GameState.DEFLECT);
+        }
     }
 }

@@ -22,7 +22,7 @@ public class PlayerMovement : MonoBehaviour {
         stats = GetComponent<PlayerStats>();
 	}
 	
-	void Update () {
+	void FixedUpdate () {
         //playerModel. removed for testing
         transform.Translate(transform.right * Input.GetAxis("Horizontal") * moveSpeed);
         transform.Translate(transform.forward * Input.GetAxis("Vertical") * moveSpeed);

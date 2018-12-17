@@ -17,7 +17,7 @@ public class Projectile : MonoBehaviour {
 	void Start () {
 	}
 	
-	void Update () {
+	void FixedUpdate () {
         if (LevelManager.instance.currentGameState != LevelManager.GameState.COMBO) {
             transform.Translate(transform.forward * speed, Space.Self);
         }

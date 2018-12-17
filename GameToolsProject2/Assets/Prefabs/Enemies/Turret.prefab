@@ -21,7 +21,7 @@ GameObject:
   - component: {fileID: 4548989788636484}
   - component: {fileID: 33245151999155046}
   - component: {fileID: 23807264057497074}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: EnemyModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -38,7 +38,7 @@ GameObject:
   - component: {fileID: 4983302901727166}
   - component: {fileID: 33263893066811396}
   - component: {fileID: 23165009733366618}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -283,6 +283,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agroRange: 0
   attackRange: 10
+  ignoreMask:
+    serializedVersion: 2
+    m_Bits: 1843
 --- !u!136 &136472287506494612
 CapsuleCollider:
   m_ObjectHideFlags: 1

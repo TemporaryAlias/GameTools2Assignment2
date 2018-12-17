@@ -28,7 +28,7 @@ public class CameraPositioner : MonoBehaviour {
         currentRotation = regularRotation;
     }
 
-    void Update() {
+    void FixedUpdate() {
         playerCamera.transform.position = Vector3.Lerp(playerCamera.transform.position, currentCameraPoint.position, cameraLerp);
 
         playerCamera.transform.rotation = Quaternion.Lerp(playerCamera.transform.rotation, currentRotation, cameraLerp);
