@@ -14,12 +14,27 @@ public class Projectile : MonoBehaviour {
 
     [SerializeField] int enemyHitCombo, deflectCombo;
 
-	void Start () {
+    [Space(5)]
+    [Header("Projectile Effects")]
+
+    [SerializeField] GameObject trail;
+
+    GameObject projectileTrial;
+    TrailRenderer trailRend;
+
+    void Start () {
+        projectileTrial = Instantiate(trail, transform.position, transform.rotation);
+
+        trailRend = projectileTrial.GetComponent<TrailRenderer>();
 	}
 	
 	void FixedUpdate () {
         if (LevelManager.instance.currentGameState != LevelManager.GameState.COMBO) {
             transform.Translate(transform.forward * speed, Space.Self);
+            projectileTrial.transform.position = transform.position;
+            trailRend.autodestruct = true;
+        } else {
+            trailRend.autodestruct = false;
         }
 	}
 
@@ -28,6 +43,8 @@ public class Projectile : MonoBehaviour {
             PlayerStats player = other.GetComponent<PlayerStats>();
 
             player.TakeDamage(damage);
+
+            trailRend.autodestruct = true;
             Destroy(gameObject);
         } else if (deflected && other.gameObject.CompareTag("Enemy")) {
             NPCStats enemy = other.GetComponent<NPCStats>();
@@ -38,15 +55,19 @@ public class Projectile : MonoBehaviour {
                 LevelManager.instance.player.stats.AddCombo(enemyHitCombo);
             }
 
+            trailRend.autodestruct = true;
             Destroy(gameObject);
         } else if (other.gameObject.CompareTag("Battery")) {
             HoloWall battery = other.GetComponentInParent<HoloWall>();
-
+            
             battery.TakeDamage(damage);
+
+            trailRend.autodestruct = true;
             Destroy(gameObject);
         }
         
         if (other.gameObject.CompareTag("ProjectileBoundary")) {
+            trailRend.autodestruct = true;
             Destroy(gameObject);
         }
     }
