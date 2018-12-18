@@ -176,7 +176,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1239334174093652}
   m_LocalRotation: {x: 0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: -24, y: 0.5, z: 15}
+  m_LocalPosition: {x: -24, y: -10, z: 15}
   m_LocalScale: {x: 0.59999996, y: 0.6000002, z: 1}
   m_Children: []
   m_Father: {fileID: 4491973611479848}
@@ -631,6 +631,11 @@ MonoBehaviour:
   killComboPoints: 0
   targetSprite: {fileID: 1239334174093652}
   explodeEffect: {fileID: 0}
+  deathEvent:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   invuln: 1
   currentHP: 0
 --- !u!114 &114873251984591382
@@ -649,6 +654,7 @@ MonoBehaviour:
   ignoreMask:
     serializedVersion: 2
     m_Bits: 1843
+  patrolPoints: []
   anim: {fileID: 0}
   dead: 0
 --- !u!136 &136472287506494612
