@@ -24,14 +24,25 @@ public class PlayerMovement : MonoBehaviour {
 	
 	void FixedUpdate () {
         //playerModel. removed for testing
-        transform.Translate(transform.right * Input.GetAxis("Horizontal") * moveSpeed);
-        transform.Translate(transform.forward * Input.GetAxis("Vertical") * moveSpeed);
 
-        UpdateRotation();
+        if (!stats.dead) {
+            transform.Translate(playerModel.transform.right * Input.GetAxis("Horizontal") * moveSpeed);
+            transform.Translate(playerModel.transform.forward * Input.GetAxis("Vertical") * moveSpeed);
+        }
     }
 
     void Update() {
-        stats.anim.SetFloat("Forward", Input.GetAxis("Vertical"));
+        if (LevelManager.instance.currentGameState == LevelManager.GameState.DEFLECT) {
+            stats.anim.SetFloat("Forward", Input.GetAxis("Vertical"));
+            stats.anim.SetFloat("Turn", Input.GetAxis("Horizontal"));
+        } else {
+            stats.anim.SetFloat("Forward", 0);
+            stats.anim.SetFloat("Turn", 0);
+        }
+
+        if (!stats.dead) {
+            UpdateRotation();
+        }
     }
 
     void UpdateRotation() {
@@ -41,7 +52,9 @@ public class PlayerMovement : MonoBehaviour {
         if (Physics.Raycast(cameraRay, out hit, Mathf.Infinity, groundMask) && hit.collider != null) {
             Vector3 pointToLook = new Vector3(hit.point.x, playerModel.transform.position.y, hit.point.z);
 
-            playerModel.transform.LookAt(pointToLook);
+            if (Vector3.Distance(pointToLook, transform.position) > 0.2) {
+                playerModel.transform.LookAt(pointToLook);
+            }
         }
     }
 

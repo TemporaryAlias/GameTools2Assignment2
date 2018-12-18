@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerStats : MonoBehaviour {
 
@@ -17,6 +18,8 @@ public class PlayerStats : MonoBehaviour {
     public Animator anim;
 
     public bool invuln;
+
+    public bool dead;
 
     Quaternion savedRotation;
 
@@ -53,8 +56,8 @@ public class PlayerStats : MonoBehaviour {
             currentHP = 0;
         }
 
-        if (currentHP <= 0) {
-            Die();
+        if (currentHP <= 0 && !dead) {
+            StartCoroutine("Die");
         }
 
         StartCoroutine("InvulnTimer");
@@ -76,8 +79,13 @@ public class PlayerStats : MonoBehaviour {
         }
     }
 
-    void Die() {
-        LevelManager.instance.RestartScene();
+    IEnumerator Die() {
+        anim.SetTrigger("Die");
+        dead = true;
+
+        yield return new WaitForSeconds(3);
+
+        LevelManager.instance.uiHandler.StartFadeOut(SceneManager.GetActiveScene().buildIndex);
     }
 
     void UpdateUI() {
@@ -100,6 +108,10 @@ public class PlayerStats : MonoBehaviour {
 
     IEnumerator ComboTimer() {
         movement.enabled = false;
+
+        anim.SetFloat("Forward", 0);
+        anim.SetFloat("Turn", 0);
+
         invuln = true;
         savedRotation = transform.rotation;
 

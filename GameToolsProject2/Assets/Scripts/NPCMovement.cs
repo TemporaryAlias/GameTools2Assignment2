@@ -15,6 +15,10 @@ public class NPCMovement : MonoBehaviour {
     NPCCombat combat;
     NPCStats stats;
 
+    public Animator anim;
+
+    public bool dead;
+
     NavMeshAgent navAgent;
 
     void Start () {
@@ -28,7 +32,12 @@ public class NPCMovement : MonoBehaviour {
 	
 	void Update () {
         RangeScan();
-	}
+
+        if (anim != null) {
+            anim.SetFloat("Forward", navAgent.velocity.z);
+            anim.SetFloat("Turn", navAgent.velocity.x);
+        }
+    }
 
     void RangeScan() {
         float dist = Vector3.Distance(transform.position, LevelManager.instance.player.transform.position);
@@ -36,10 +45,15 @@ public class NPCMovement : MonoBehaviour {
 
         Physics.Raycast(transform.position, LevelManager.instance.player.transform.position - transform.position, out hit, attackRange, ignoreMask);
 
-        if (hit.transform != null && hit.transform.gameObject.CompareTag("Player")) {
+        if (hit.transform != null && hit.transform.gameObject.CompareTag("Player") && !dead) {
             if (dist <= attackRange) {
                 transform.LookAt(new Vector3(LevelManager.instance.player.transform.position.x, transform.position.y, LevelManager.instance.player.transform.position.z));
-                combat.Attack();
+
+                if (anim == null) {
+                    combat.Attack();
+                } else {
+                    anim.SetTrigger("Shoot");
+                }
             } else if (dist <= agroRange && dist > attackRange) {
                 navAgent.SetDestination(LevelManager.instance.player.transform.position);
             }

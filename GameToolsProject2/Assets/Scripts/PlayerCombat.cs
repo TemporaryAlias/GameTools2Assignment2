@@ -6,7 +6,7 @@ using UnityEngine.AI;
 public class PlayerCombat : MonoBehaviour {
 
     [SerializeField] GameObject deflectCollider;
-    [SerializeField] float deflectTime, deflectCooldown;
+    [SerializeField] float deflectCooldown;
     [SerializeField] LayerMask targetableMask;
     [SerializeField] int comboDamage;
 
@@ -33,7 +33,8 @@ public class PlayerCombat : MonoBehaviour {
             navAgent.ResetPath();
 
             if (Input.GetMouseButtonDown(0) && !cooldown) {
-                StartCoroutine("Deflect");
+                StartCoroutine("DeflectCooldown");
+                stats.anim.SetTrigger("Deflect");
             }
         } else if (LevelManager.instance.currentGameState == LevelManager.GameState.COMBO) {
             if (currentTarget == null) {
@@ -47,9 +48,7 @@ public class PlayerCombat : MonoBehaviour {
                 if (dist <= navAgent.stoppingDistance) {
                     navAgent.ResetPath();
 
-                    if (Input.GetMouseButtonDown(0)) {
-                        AttackTarget();
-                    }
+                    AttackTarget();
                 } else {
                     navAgent.SetDestination(currentTarget.position);
                 }
@@ -57,13 +56,8 @@ public class PlayerCombat : MonoBehaviour {
         }
 	}
 
-    IEnumerator Deflect() {
-        deflectCollider.SetActive(true);
+    IEnumerator DeflectCooldown() {
         cooldown = true;
-
-        yield return new WaitForSeconds(deflectTime);
-
-        deflectCollider.SetActive(false);
 
         yield return new WaitForSeconds(deflectCooldown);
 
@@ -85,11 +79,9 @@ public class PlayerCombat : MonoBehaviour {
     void AttackTarget() {
         NPCStats targetStats = currentTarget.GetComponent<NPCStats>();
 
-        if (targetStats.currentHP - comboDamage <= 0) {
-            currentTarget = null;
-        }
+        targetStats.Explode();
 
-        targetStats.TakeDamage(comboDamage);
+        currentTarget = null;
     }
 
     void DashToTarget() {

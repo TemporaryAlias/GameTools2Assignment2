@@ -37,6 +37,12 @@ public class NPCStats : MonoBehaviour {
     void Update() {
         if (LevelManager.instance.currentGameState == LevelManager.GameState.COMBO) {
             navAgent.ResetPath();
+
+            if (movement.anim != null) {
+                movement.anim.SetFloat("Forward", 0);
+                movement.anim.SetFloat("Turn", 0);
+            }
+            
             movement.enabled = false;
 
             //DEBUG
@@ -62,11 +68,17 @@ public class NPCStats : MonoBehaviour {
 
         if (currentHP <= 0) {
             LevelManager.instance.player.stats.AddCombo(killComboPoints);
-            Die();
+            StartCoroutine("Die");
             return;
         }
 
         LevelManager.instance.player.stats.AddCombo(hitComboPoints);
+    }
+
+    public void Explode() {
+        //explode effect
+
+        Destroy(gameObject);
     }
 
     public void Heal(int healAmount) {
@@ -77,7 +89,12 @@ public class NPCStats : MonoBehaviour {
         }
     }
 
-    void Die() {
+    IEnumerator Die() {
+        movement.anim.SetTrigger("Die");
+        movement.dead = true;
+
+        yield return new WaitForSeconds(3);
+
         Destroy(gameObject);
     }
 
