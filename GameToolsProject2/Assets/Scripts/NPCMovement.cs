@@ -12,14 +12,27 @@ public class NPCMovement : MonoBehaviour {
 
     [SerializeField] LayerMask ignoreMask;
 
+    [Space(5)]
+    [Header("Patrol Settings")]
+
+    [SerializeField] List<Transform> patrolPoints = new List<Transform>();
+
+    enum NPCState {ATTACK, PATROL};
+
+    NPCState currentState;
+
     NPCCombat combat;
     NPCStats stats;
 
     public Animator anim;
 
     public bool dead;
-
+    
     NavMeshAgent navAgent;
+
+    int currentPatrolPoint;
+
+    float attackStopDist;
 
     void Start () {
         combat = GetComponent<NPCCombat>();
@@ -27,11 +40,20 @@ public class NPCMovement : MonoBehaviour {
 
         navAgent = GetComponent<NavMeshAgent>();
 
+        currentState = NPCState.PATROL;
+
+        currentPatrolPoint = 0;
+        attackStopDist = navAgent.stoppingDistance;
         //navAgent.stoppingDistance = attackRange / 2;
-	}
+    }
 	
 	void Update () {
         RangeScan();
+
+        if (currentState == NPCState.PATROL && patrolPoints.Count > 0 && !dead) {
+            Patrol();
+            navAgent.stoppingDistance = 2;
+        }
 
         if (anim != null) {
             anim.SetFloat("Forward", navAgent.velocity.z);
@@ -46,6 +68,13 @@ public class NPCMovement : MonoBehaviour {
         Physics.Raycast(transform.position, LevelManager.instance.player.transform.position - transform.position, out hit, attackRange, ignoreMask);
 
         if (hit.transform != null && hit.transform.gameObject.CompareTag("Player") && !dead) {
+            currentState = NPCState.ATTACK;
+            navAgent.stoppingDistance = attackStopDist;
+
+            if (anim != null) {
+                navAgent.SetDestination(LevelManager.instance.player.transform.position);
+            }
+
             if (dist <= attackRange) {
                 transform.LookAt(new Vector3(LevelManager.instance.player.transform.position.x, transform.position.y, LevelManager.instance.player.transform.position.z));
 
@@ -57,7 +86,22 @@ public class NPCMovement : MonoBehaviour {
             } else if (dist <= agroRange && dist > attackRange) {
                 navAgent.SetDestination(LevelManager.instance.player.transform.position);
             }
+        } else {
+            currentState = NPCState.PATROL;
         }
+    }
+
+    void Patrol() {
+        if (Vector3.Distance(transform.position, patrolPoints[currentPatrolPoint].position) <= 2) {
+            if (currentPatrolPoint + 1 >= patrolPoints.Count) {
+                currentPatrolPoint = 0;
+            } else {
+                currentPatrolPoint += 1;
+            }
+        }
+
+        transform.LookAt(new Vector3(patrolPoints[currentPatrolPoint].position.x, transform.position.y, patrolPoints[currentPatrolPoint].position.z));
+        navAgent.SetDestination(patrolPoints[currentPatrolPoint].position);
     }
 
     private void OnDrawGizmosSelected() {

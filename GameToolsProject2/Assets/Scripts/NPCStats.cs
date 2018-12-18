@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Events;
 
 public class NPCStats : MonoBehaviour {
 
@@ -12,6 +13,8 @@ public class NPCStats : MonoBehaviour {
 
     //DEBUG
     [SerializeField] GameObject targetSprite, explodeEffect;
+
+    [SerializeField] UnityEvent deathEvent;
 
     public bool invuln;
 
@@ -77,6 +80,7 @@ public class NPCStats : MonoBehaviour {
 
     public void Explode() {
         Instantiate(explodeEffect, transform.position, explodeEffect.transform.rotation);
+        deathEvent.Invoke();
 
         Destroy(gameObject);
     }
@@ -92,6 +96,7 @@ public class NPCStats : MonoBehaviour {
     IEnumerator Die() {
         movement.anim.SetTrigger("Die");
         movement.dead = true;
+        deathEvent.Invoke();
 
         yield return new WaitForSeconds(3);
 
