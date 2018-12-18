@@ -19,6 +19,7 @@ public class NearMissBehaviour : MonoBehaviour {
             PlayerStats player = other.GetComponent<PlayerStats>();
 
             player.AddCombo(nearMissCombo);
+            LevelManager.instance.uiHandler.ComboBarAnim();
         }
     }
 

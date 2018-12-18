@@ -11,7 +11,7 @@ public class NPCStats : MonoBehaviour {
     [SerializeField] int hitComboPoints, killComboPoints;
 
     //DEBUG
-    [SerializeField] GameObject targetSprite;
+    [SerializeField] GameObject targetSprite, explodeEffect;
 
     public bool invuln;
 
@@ -76,7 +76,7 @@ public class NPCStats : MonoBehaviour {
     }
 
     public void Explode() {
-        //explode effect
+        Instantiate(explodeEffect, transform.position, explodeEffect.transform.rotation);
 
         Destroy(gameObject);
     }

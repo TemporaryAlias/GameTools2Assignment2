@@ -2364,6 +2364,8 @@ MonoBehaviour:
   currentCombo: 0
   comboUI: {fileID: 239258219}
   deflectUI: {fileID: 1066545476}
+  comboAnim: {fileID: 2034244748}
+  hpAnim: {fileID: 939961117}
   fadeImage: {fileID: 2065619844}
   fadeTime: 0.03
 --- !u!4 &823383848
@@ -2539,6 +2541,7 @@ GameObject:
   m_Component:
   - component: {fileID: 939961115}
   - component: {fileID: 939961116}
+  - component: {fileID: 939961117}
   m_Layer: 5
   m_Name: HPSlider
   m_TagString: Untagged
@@ -2616,6 +2619,24 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!95 &939961117
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 939961114}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d22e0eb85a00042499f0e4affcaf55dd, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!95 &943715157 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: 9500000, guid: 818e46835d1f02c46ac6b300215f229e,
@@ -5828,6 +5849,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2034244746}
   - component: {fileID: 2034244747}
+  - component: {fileID: 2034244748}
   m_Layer: 5
   m_Name: ComboSlider
   m_TagString: Untagged
@@ -5905,6 +5927,24 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!95 &2034244748
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2034244745}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c2297d17091a5484a83b9f21796d591b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &2045702368
 GameObject:
   m_ObjectHideFlags: 0

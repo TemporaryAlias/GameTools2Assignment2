@@ -52,6 +52,7 @@ public class PlayerStats : MonoBehaviour {
 
         if (currentHP - damageDone > 0) {
             currentHP -= damageDone;
+            LevelManager.instance.uiHandler.HPBarAnim();
         } else {
             currentHP = 0;
         }

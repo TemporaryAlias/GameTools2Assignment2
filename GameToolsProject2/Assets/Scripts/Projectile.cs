@@ -53,6 +53,7 @@ public class Projectile : MonoBehaviour {
                 enemy.TakeDamage(damage);
 
                 LevelManager.instance.player.stats.AddCombo(enemyHitCombo);
+                LevelManager.instance.uiHandler.ComboBarAnim();
             }
 
             trailRend.autodestruct = true;
@@ -75,6 +76,7 @@ public class Projectile : MonoBehaviour {
     public void Deflect(Transform deflector) {
         deflected = true;
         LevelManager.instance.player.stats.AddCombo(deflectCombo);
+        LevelManager.instance.uiHandler.ComboBarAnim();
 
         float rotation = Vector3.SignedAngle(transform.up, deflector.right, Vector3.up);
 

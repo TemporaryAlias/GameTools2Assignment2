@@ -24,6 +24,8 @@ public class UIHandler : MonoBehaviour {
 
     [SerializeField] GameObject comboUI, deflectUI;
 
+    [SerializeField] Animator comboAnim, hpAnim;
+
     [Space(5)]
     [Header("Fade Settings")]
     
@@ -32,7 +34,6 @@ public class UIHandler : MonoBehaviour {
     [SerializeField] float fadeTime;
 
     Color fadeColour;
-
 
     float comboCountdown;
 
@@ -84,6 +85,14 @@ public class UIHandler : MonoBehaviour {
                 break;
 
         }
+    }
+
+    public void ComboBarAnim() {
+        comboAnim.SetTrigger("Bounce");
+    }
+
+    public void HPBarAnim() {
+        hpAnim.SetTrigger("Bounce");
     }
 
     public void StartFadeOut(int newSceneIndex) {
