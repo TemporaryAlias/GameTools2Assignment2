@@ -27,6 +27,7 @@ public class PlayerCombat : MonoBehaviour {
         if (LevelManager.instance.currentGameState == LevelManager.GameState.DEFLECT) {
             if (currentTarget != null) {
                 currentTarget = null;
+                stats.anim.SetTrigger("Land");
             }
 
             transform.rotation = Quaternion.identity;
@@ -80,12 +81,14 @@ public class PlayerCombat : MonoBehaviour {
         NPCStats targetStats = currentTarget.GetComponent<NPCStats>();
 
         targetStats.Explode();
+        stats.anim.SetTrigger("Land");
 
         currentTarget = null;
     }
 
     void DashToTarget() {
         navAgent.SetDestination(currentTarget.position);
+        stats.anim.SetTrigger("Jump");
     }
 
 }
