@@ -56,7 +56,7 @@ public class NPCStats : MonoBehaviour {
     }
 
     public void TakeDamage(int damageDone) {
-        if (invuln) {
+        if (invuln || movement.dead) {
             return;
         }
 

@@ -4033,8 +4033,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHP: 5
-  hitComboPoints: 0
-  killComboPoints: 0
+  hitComboPoints: 5
+  killComboPoints: 10
   targetSprite: {fileID: 1831873880554298}
   explodeEffect: {fileID: 1495826395062950, guid: a7ff33e51bb7d0e448c7eb0726a44712,
     type: 2}
@@ -4085,7 +4085,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 1115536057868346, guid: 92d784224f504224890f6418fc898205,
     type: 2}
   projectileDamage: 1
-  projectileNearMissCombo: 5
+  projectileNearMissCombo: 2
   projectileSpeed: 0.4
   attackCooldown: 0.5
 --- !u!135 &135070122853698978

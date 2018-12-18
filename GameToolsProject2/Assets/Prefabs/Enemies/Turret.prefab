@@ -250,7 +250,7 @@ MonoBehaviour:
   projectilePrefab: {fileID: 1115536057868346, guid: 92d784224f504224890f6418fc898205,
     type: 2}
   projectileDamage: 1
-  projectileNearMissCombo: 5
+  projectileNearMissCombo: 1
   projectileSpeed: 0.2
   attackCooldown: 0.5
 --- !u!114 &114736017089719686
@@ -268,6 +268,7 @@ MonoBehaviour:
   hitComboPoints: 0
   killComboPoints: 0
   targetSprite: {fileID: 0}
+  explodeEffect: {fileID: 0}
   invuln: 1
   currentHP: 0
 --- !u!114 &114873251984591382
@@ -286,6 +287,8 @@ MonoBehaviour:
   ignoreMask:
     serializedVersion: 2
     m_Bits: 1843
+  anim: {fileID: 0}
+  dead: 0
 --- !u!136 &136472287506494612
 CapsuleCollider:
   m_ObjectHideFlags: 1
