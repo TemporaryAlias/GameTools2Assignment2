@@ -27,7 +27,7 @@ public class NPCMovement : MonoBehaviour {
 
         navAgent = GetComponent<NavMeshAgent>();
 
-        navAgent.stoppingDistance = attackRange / 2;
+        //navAgent.stoppingDistance = attackRange / 2;
 	}
 	
 	void Update () {
