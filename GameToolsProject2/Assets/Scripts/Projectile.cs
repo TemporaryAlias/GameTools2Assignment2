@@ -18,6 +18,7 @@ public class Projectile : MonoBehaviour {
     [Header("Projectile Effects")]
 
     [SerializeField] GameObject trail;
+    [SerializeField] GameObject batteryEffect, bloodEffect;
 
     GameObject projectileTrial;
     TrailRenderer trailRend;
@@ -42,14 +43,23 @@ public class Projectile : MonoBehaviour {
         if (!deflected && other.gameObject.CompareTag("Player")) {
             PlayerStats player = other.GetComponent<PlayerStats>();
 
+            if (!player.dead && !player.invuln) {
+                Instantiate(bloodEffect, transform.position, bloodEffect.transform.rotation);
+            }
+
             player.TakeDamage(damage);
 
             trailRend.autodestruct = true;
+
             Destroy(gameObject);
         } else if (deflected && other.gameObject.CompareTag("Enemy")) {
             NPCStats enemy = other.GetComponent<NPCStats>();
 
             if (!enemy.invuln) {
+                if (enemy.currentHP > 0) {
+                    Instantiate(bloodEffect, transform.position, bloodEffect.transform.rotation);
+                }
+
                 enemy.TakeDamage(damage);
 
                 LevelManager.instance.player.stats.AddCombo(enemyHitCombo);
@@ -57,13 +67,19 @@ public class Projectile : MonoBehaviour {
             }
 
             trailRend.autodestruct = true;
+
             Destroy(gameObject);
         } else if (other.gameObject.CompareTag("Battery")) {
             HoloWall battery = other.GetComponentInParent<HoloWall>();
             
+            if (battery.batteryCurrentHp > 0) {
+                Instantiate(batteryEffect, transform.position, bloodEffect.transform.rotation);
+            }
+
             battery.TakeDamage(damage);
 
             trailRend.autodestruct = true;
+            
             Destroy(gameObject);
         }
         

@@ -7,7 +7,7 @@ public class HoloWall : MonoBehaviour {
     [Header("HoloWall Settings")]
 
     [SerializeField] GameObject wallObject;
-    [SerializeField] int batteryMaxHp, batteryCurrentHp;
+    public int batteryMaxHp, batteryCurrentHp;
 
     void Start() {
         batteryCurrentHp = batteryMaxHp;

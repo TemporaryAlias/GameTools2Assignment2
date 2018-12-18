@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: DebugHolo
+  m_Name: HoloBlue
   m_Shader: {fileID: 4800000, guid: e5840ce0c870b284eb4d710cffa63df5, type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 4
