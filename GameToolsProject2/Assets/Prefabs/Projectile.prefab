@@ -149,6 +149,8 @@ MonoBehaviour:
     type: 2}
   bloodEffect: {fileID: 1920273874532828, guid: 79bf8be273de2a448a80517305e8a8b7,
     type: 2}
+  hitClip: {fileID: 8300000, guid: 3f92cb60f94e254498acca6eef28c4a8, type: 3}
+  deflectClip: {fileID: 8300000, guid: 7d14f5cc9023f3e4e96eaf75cb703d43, type: 3}
 --- !u!135 &135371158343565644
 SphereCollider:
   m_ObjectHideFlags: 1

@@ -15,6 +15,8 @@ public class PlayerStats : MonoBehaviour {
     public PlayerCombat combat;
     public PlayerMovement movement;
 
+    [SerializeField] AudioClip dieClip;
+
     public Animator anim;
 
     public bool invuln;
@@ -83,6 +85,8 @@ public class PlayerStats : MonoBehaviour {
     IEnumerator Die() {
         anim.SetTrigger("Die");
         dead = true;
+
+        LevelManager.instance.soundManager.PlayOneShot(dieClip);
 
         yield return new WaitForSeconds(3);
 

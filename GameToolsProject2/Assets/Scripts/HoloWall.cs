@@ -9,6 +9,8 @@ public class HoloWall : MonoBehaviour {
     [SerializeField] GameObject wallObject;
     public int batteryMaxHp, batteryCurrentHp;
 
+    [SerializeField] AudioClip wallDownClip;
+
     void Start() {
         batteryCurrentHp = batteryMaxHp;
 
@@ -25,6 +27,7 @@ public class HoloWall : MonoBehaviour {
 
 	public void ToggleWall(bool newWallState) {
         wallObject.SetActive(newWallState);
+        LevelManager.instance.soundManager.PlayOneShot(wallDownClip);
     }
 
 }

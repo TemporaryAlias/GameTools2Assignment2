@@ -12,6 +12,8 @@ public class NPCCombat : MonoBehaviour {
     [SerializeField] float projectileSpeed;
     [SerializeField] float attackCooldown;
 
+    [SerializeField] AudioClip shootClip;
+
     NPCMovement movement;
     NPCStats stats;
 
@@ -31,6 +33,7 @@ public class NPCCombat : MonoBehaviour {
     public void Attack() {
         if (attackReady) {
             GameObject newProjectile = Instantiate(projectilePrefab, projectileFirePoint.position, projectileFirePoint.rotation);
+            LevelManager.instance.soundManager.PlayOneShot(shootClip);
 
             Projectile projectile = newProjectile.GetComponent<Projectile>();
             NearMissBehaviour nearMiss = newProjectile.GetComponentInChildren<NearMissBehaviour>();

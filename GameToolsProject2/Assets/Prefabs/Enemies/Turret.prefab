@@ -615,6 +615,7 @@ MonoBehaviour:
   projectileNearMissCombo: 1
   projectileSpeed: 0.2
   attackCooldown: 1
+  shootClip: {fileID: 8300000, guid: 3032ff8640e43b5419bed241e1571321, type: 3}
 --- !u!114 &114736017089719686
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -636,6 +637,8 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  explodeClip: {fileID: 8300000, guid: 68c21a4765eaafb48a466e0afafd92bf, type: 3}
+  dieClip: {fileID: 8300000, guid: ebc43e17cd78aa340916577d6a17a8e2, type: 3}
   invuln: 1
   currentHP: 0
 --- !u!114 &114873251984591382

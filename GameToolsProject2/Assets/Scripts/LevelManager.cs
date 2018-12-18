@@ -31,12 +31,16 @@ public class LevelManager : MonoBehaviour {
 
     public GameState currentGameState;
 
+    public AudioSource soundManager;
+
 	void Start ()  {
         SceneManager.sceneLoaded += OnSceneLoad;
 
+        soundManager = GetComponent<AudioSource>();
+
         //player = FindObjectOfType<PlayerMovement>();
         //playerCamera = FindObjectOfType<CameraPositioner>();
-	}
+    }
 	
 	void Update () {
 
@@ -74,6 +78,7 @@ public class LevelManager : MonoBehaviour {
         player = FindObjectOfType<PlayerMovement>();
         playerCamera = FindObjectOfType<CameraPositioner>();
         uiHandler = FindObjectOfType<UIHandler>();
+        soundManager = GetComponent<AudioSource>();
 
         if (player == null || playerCamera == null) {
             currentGameState = GameState.MENU;

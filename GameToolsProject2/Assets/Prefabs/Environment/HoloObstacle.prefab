@@ -243,6 +243,7 @@ MonoBehaviour:
   wallObject: {fileID: 1795777551202356}
   batteryMaxHp: 1
   batteryCurrentHp: 0
+  wallDownClip: {fileID: 8300000, guid: 56cdb1d8043102d4681b079e812c8548, type: 3}
 --- !u!208 &208879586821829448
 NavMeshObstacle:
   m_ObjectHideFlags: 1

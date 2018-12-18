@@ -10,6 +10,9 @@ public class PlayerCombat : MonoBehaviour {
     [SerializeField] LayerMask targetableMask;
     [SerializeField] int comboDamage;
 
+    [Space(5)]
+    [Header("SFX")]
+
     Transform currentTarget;
 
     bool cooldown;

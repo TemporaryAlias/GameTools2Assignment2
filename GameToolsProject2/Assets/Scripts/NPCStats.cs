@@ -16,6 +16,8 @@ public class NPCStats : MonoBehaviour {
 
     [SerializeField] UnityEvent deathEvent;
 
+    [SerializeField] AudioClip explodeClip, dieClip;
+
     public bool invuln;
 
     NPCCombat combat;
@@ -82,6 +84,8 @@ public class NPCStats : MonoBehaviour {
         Instantiate(explodeEffect, transform.position, explodeEffect.transform.rotation);
         deathEvent.Invoke();
 
+        LevelManager.instance.soundManager.PlayOneShot(explodeClip);
+
         Destroy(gameObject);
     }
 
@@ -97,6 +101,7 @@ public class NPCStats : MonoBehaviour {
         movement.anim.SetTrigger("Die");
         movement.dead = true;
         deathEvent.Invoke();
+        LevelManager.instance.soundManager.PlayOneShot(dieClip);
 
         yield return new WaitForSeconds(3);
 

@@ -355,6 +355,7 @@ GameObject:
   - component: {fileID: 4668984849168160}
   - component: {fileID: 95505732952700098}
   - component: {fileID: 114207290234764328}
+  - component: {fileID: 114689010094692154}
   m_Layer: 0
   m_Name: exo_red
   m_TagString: Untagged
@@ -4298,6 +4299,8 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  explodeClip: {fileID: 8300000, guid: 68c21a4765eaafb48a466e0afafd92bf, type: 3}
+  dieClip: {fileID: 8300000, guid: ebc43e17cd78aa340916577d6a17a8e2, type: 3}
   invuln: 0
   currentHP: 0
 --- !u!114 &114207290234764328
@@ -4337,6 +4340,18 @@ MonoBehaviour:
   - {fileID: 0}
   anim: {fileID: 95505732952700098}
   dead: 0
+--- !u!114 &114689010094692154
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1142367379317678}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53f17d04473dd4a4ab81fe58eb28e926, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  footstep: {fileID: 8300000, guid: 25813c31283372945b120c13eff93955, type: 3}
 --- !u!114 &114850126050183294
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -4355,6 +4370,7 @@ MonoBehaviour:
   projectileNearMissCombo: 2
   projectileSpeed: 0.6
   attackCooldown: 0.5
+  shootClip: {fileID: 8300000, guid: 3032ff8640e43b5419bed241e1571321, type: 3}
 --- !u!135 &135070122853698978
 SphereCollider:
   m_ObjectHideFlags: 1

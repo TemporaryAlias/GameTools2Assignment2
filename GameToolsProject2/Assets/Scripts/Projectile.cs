@@ -20,6 +20,9 @@ public class Projectile : MonoBehaviour {
     [SerializeField] GameObject trail;
     [SerializeField] GameObject batteryEffect, bloodEffect;
 
+    [SerializeField] AudioClip hitClip;
+    [SerializeField] AudioClip deflectClip;
+
     GameObject projectileTrial;
     TrailRenderer trailRend;
 
@@ -45,6 +48,7 @@ public class Projectile : MonoBehaviour {
 
             if (!player.dead && !player.invuln) {
                 Instantiate(bloodEffect, transform.position, bloodEffect.transform.rotation);
+                LevelManager.instance.soundManager.PlayOneShot(hitClip);
             }
 
             player.TakeDamage(damage);
@@ -58,6 +62,7 @@ public class Projectile : MonoBehaviour {
             if (!enemy.invuln) {
                 if (enemy.currentHP > 0) {
                     Instantiate(bloodEffect, transform.position, bloodEffect.transform.rotation);
+                    LevelManager.instance.soundManager.PlayOneShot(hitClip);
                 }
 
                 enemy.TakeDamage(damage);
@@ -73,7 +78,8 @@ public class Projectile : MonoBehaviour {
             HoloWall battery = other.GetComponentInParent<HoloWall>();
             
             if (battery.batteryCurrentHp > 0) {
-                Instantiate(batteryEffect, transform.position, bloodEffect.transform.rotation);
+                Instantiate(batteryEffect, transform.position, batteryEffect.transform.rotation);
+                LevelManager.instance.soundManager.PlayOneShot(hitClip);
             }
 
             battery.TakeDamage(damage);
@@ -91,6 +97,8 @@ public class Projectile : MonoBehaviour {
 
     public void Deflect(Transform deflector) {
         deflected = true;
+        LevelManager.instance.soundManager.PlayOneShot(deflectClip);
+
         LevelManager.instance.player.stats.AddCombo(deflectCombo);
         LevelManager.instance.uiHandler.ComboBarAnim();
 

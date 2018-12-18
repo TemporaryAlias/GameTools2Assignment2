@@ -2269,6 +2269,7 @@ MonoBehaviour:
   comboTime: 5
   combat: {fileID: 0}
   movement: {fileID: 0}
+  dieClip: {fileID: 8300000, guid: ebc43e17cd78aa340916577d6a17a8e2, type: 3}
   anim: {fileID: 943715157}
   invuln: 0
   dead: 0
@@ -3118,6 +3119,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deflectZone: {fileID: 552855302}
   trail: {fileID: 1056255955}
+  deflectClip: {fileID: 8300000, guid: 40c1ba7ceabef5747b895a29aeb7b147, type: 3}
+--- !u!114 &211333793
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 211333791}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 53f17d04473dd4a4ab81fe58eb28e926, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  footstep: {fileID: 8300000, guid: 25813c31283372945b120c13eff93955, type: 3}
 --- !u!1 &215516576
 GameObject:
   m_ObjectHideFlags: 0
@@ -4227,7 +4241,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8584906, g: 0.8584906, b: 0.8584906, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -10142,6 +10156,7 @@ GameObject:
   m_Component:
   - component: {fileID: 787053520}
   - component: {fileID: 787053519}
+  - component: {fileID: 787053521}
   m_Layer: 0
   m_Name: LevelManager
   m_TagString: Untagged
@@ -10164,6 +10179,7 @@ MonoBehaviour:
   uiHandler: {fileID: 0}
   playerCamera: {fileID: 534669906}
   currentGameState: 2
+  soundManager: {fileID: 0}
 --- !u!4 &787053520
 Transform:
   m_ObjectHideFlags: 0
@@ -10177,6 +10193,101 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &787053521
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 787053518}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &792854064
 GameObject:
   m_ObjectHideFlags: 0
@@ -24405,16 +24516,6 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 114659100192870086, guid: ad62a65bec0d3ca4aac2be0beaa27e5a,
-        type: 2}
-      propertyPath: patrolPoints.Array.size
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 114068404632240178, guid: ad62a65bec0d3ca4aac2be0beaa27e5a,
-        type: 2}
-      propertyPath: deathEvent.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 4351756612041742, guid: ad62a65bec0d3ca4aac2be0beaa27e5a, type: 2}
       propertyPath: m_LocalPosition.x
       value: 26.25
@@ -24447,50 +24548,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1668962011866454, guid: ad62a65bec0d3ca4aac2be0beaa27e5a, type: 2}
-      propertyPath: m_Name
-      value: Enemy (6)
-      objectReference: {fileID: 0}
-    - target: {fileID: 114659100192870086, guid: ad62a65bec0d3ca4aac2be0beaa27e5a,
-        type: 2}
-      propertyPath: agroRange
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 114659100192870086, guid: ad62a65bec0d3ca4aac2be0beaa27e5a,
-        type: 2}
-      propertyPath: attackRange
-      value: 18
-      objectReference: {fileID: 0}
-    - target: {fileID: 114068404632240178, guid: ad62a65bec0d3ca4aac2be0beaa27e5a,
-        type: 2}
-      propertyPath: deathEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114068404632240178, guid: ad62a65bec0d3ca4aac2be0beaa27e5a,
-        type: 2}
-      propertyPath: deathEvent.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 114068404632240178, guid: ad62a65bec0d3ca4aac2be0beaa27e5a,
-        type: 2}
-      propertyPath: deathEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 556783975}
-    - target: {fileID: 114068404632240178, guid: ad62a65bec0d3ca4aac2be0beaa27e5a,
-        type: 2}
-      propertyPath: deathEvent.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: TakeDamage
-      objectReference: {fileID: 0}
-    - target: {fileID: 114068404632240178, guid: ad62a65bec0d3ca4aac2be0beaa27e5a,
-        type: 2}
-      propertyPath: deathEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 114068404632240178, guid: ad62a65bec0d3ca4aac2be0beaa27e5a,
-        type: 2}
-      propertyPath: deathEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_IntArgument
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 114659100192870086, guid: ad62a65bec0d3ca4aac2be0beaa27e5a,
         type: 2}
       propertyPath: patrolPoints.Array.data[0]
@@ -24521,6 +24578,15 @@ Prefab:
       propertyPath: patrolPoints.Array.data[5]
       value: 
       objectReference: {fileID: 1870265840}
+    - target: {fileID: 114068404632240178, guid: ad62a65bec0d3ca4aac2be0beaa27e5a,
+        type: 2}
+      propertyPath: deathEvent.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 556783975}
+    - target: {fileID: 1668962011866454, guid: ad62a65bec0d3ca4aac2be0beaa27e5a, type: 2}
+      propertyPath: m_Name
+      value: Enemy (6)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad62a65bec0d3ca4aac2be0beaa27e5a, type: 2}
   m_IsPrefabAsset: 0
@@ -26668,7 +26734,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8584906, g: 0.8584906, b: 0.8584906, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
