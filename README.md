@@ -8,3 +8,9 @@ When it's full, right click to start your boosted attack, and left clikc on an e
 Be quick, though! You only have a few seconds in your boost mode.
 
 Game created for Game Tools 2.
+
+Models and animations courtesy of Mixamo:
+https://www.mixamo.com/#/
+
+Sounds by phoenix1291, SwissArcadeGameEntertainment:
+https://opengameart.org/content/sfx-the-ultimate-2017-16-bit-mini-pack
