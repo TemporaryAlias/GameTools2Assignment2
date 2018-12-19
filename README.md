@@ -1,6 +1,6 @@
 # Game Tools 2 - Assignment 2
 
-##Deflect - A Game About Bullets
+## Deflect - A Game About Bullets
 Dodge and deflect your way to the end of the stage, and use your enemies own attacks against them.
 
 Use the left mouse button to deflect bullets. By deflecting, hitting enemies and dodging, you can build your combo up.
